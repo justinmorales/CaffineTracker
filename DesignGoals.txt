@@ -3,14 +3,20 @@ Design Specifications for Application
 Main Activity preferences
 	We want to calculate the current total of caffeine at on create
 	display name
+	badges
 	contain a  list of daily drinks and food containing caffeine at the main page
+		dropdown of all items + amount
 		ill be used to easily access the previously consumed drinks/food to streamline searching (like a cache)
 		items decay on a weekly basis.
 	a button to access a preference/settings activity
 	on initialization, if preferences is null, then pull up the preferences/settings activity
-	a daily tracking vizualization of the amount of caffeine consumed today
+	a daily tracking vizualization of the amount of caffeine consumed today, this week, month etc
 Shared Preferences
 	have the user input their name, weight, age, height and possibly gender
 	display it in a text view for the user to see, (in case they want to edit)
 	all of these values should be able to be re-edit
 	give the user the opportunity to toggle push notifcations on/off
+	user selects to decrease intake by x amount in y time
+Stats
+	most consumed items week, month (in bar graphs)
+	graphs for consumption over past week, month etc
