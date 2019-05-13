@@ -49,21 +49,37 @@ public class APIMainActivity extends AppCompatActivity {
         foodItems = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest objectRequest = new JsonObjectRequest()
+        //JsonObjectRequest objectRequest = new JsonObjectRequest()
 
     }
 
     private StringRequest searchNameStringRequest(String nameSearch) {
+
+        //DOCUMENTATION FOR THIS STRING REQUEST CAN BE FOUND AT https://ndb.nal.usda.gov/ndb/doc/apilist/API-NUTRIENT-REPORT.md
+
+        //key
         final String API = "&api_key=spkVUDxuyvhsVBJTwpF53KaGNaytyLFPQRVWZePq";
-        final String NAME_SEARCH = "&q=";
-        final String DATA_SOURCE = "&ds=Standard Reference";
-        final String FOOD_GROUP = "&fg=";
-        final String SORT = "&sort=r";
+        //not used in nutrient search
+        //final String NAME_SEARCH = "&q=";
+        //not used in nutrient search
+        //final String DATA_SOURCE = "&ds=Standard Reference";
+        //not in use
+        //final String FOOD_GROUP = "&fg=";
+        final String NDBNO = "&ndbno=";
+        //gives measure by serving size
+        final String MEASUREBY = "&measureby=m";
+        //nutrient content caffeine
+        final String NUTRIENT = "&nutrients=262";
+        //sort by nutrition content
+        final String SORT = "&sort=c";
+        //self explanatory, max total items is 1500
         final String MAX_ROWS = "&max=25";
+        //self explanatory
         final String BEGINNING_ROW = "&offset=0";
+        //nutrient search in json format
         final String URL_PREFIX = "https://api.nal.usda.gov/ndb/search/?format=json";
 
-        String url = URL_PREFIX + API + NAME_SEARCH + nameSearch + DATA_SOURCE + FOOD_GROUP + SORT + MAX_ROWS + BEGINNING_ROW;
+        String url = URL_PREFIX + API + NUTRIENT + SORT + MAX_ROWS + BEGINNING_ROW + MEASUREBY + NDBNO;
 
         // 1st param => type of method (GET/PUT/POST/PATCH/etc)
         // 2nd param => complete url of the API
@@ -78,9 +94,9 @@ public class APIMainActivity extends AppCompatActivity {
                         // try/catch block for returned JSON data
                         // see API's documentation for returned format
                         try {
-                            JSONObject result = new JSONObject(response).getJSONObject("list");
+                            JSONObject result = new JSONObject(response).getJSONObject("report");
                             int maxItems = result.getInt("end");
-                            JSONArray resultList = result.getJSONArray("item");
+                            JSONArray resultList = result.getJSONArray("foods");
 
                             for (int i = 0; i < maxItems; i++) {
                                 FoodItem fi = new FoodItem(
