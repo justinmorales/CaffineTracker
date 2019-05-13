@@ -100,16 +100,17 @@ public class APIMainActivity extends AppCompatActivity {
 
                             for (int i = 0; i < maxItems; i++) {
                                 FoodItem fi = new FoodItem(
-                                        resultList.getJSONObject(i).getString("name").trim(),
-                                        resultList.getJSONObject(i).getString("group").trim(),
                                         resultList.getJSONObject(i).getString("ndbno").trim(),
-                                        ""
+                                        resultList.getJSONObject(i).getString("name").trim(),
+                                        resultList.getJSONObject(i).getString("measure").trim(),
+                                        resultList.getJSONObject(i).getString("unit").trim(),
+                                        resultList.getJSONObject(i).getString("value").trim()
                                 );
                                 foodItems.add(fi);
                             }
 
                             //This call show call a function to an adapter. Create that function in this class.
-                            showListOfItems();
+                            //showListOfItems();
 
                             // catch for the JSON parsing error
                         } catch (JSONException e) {

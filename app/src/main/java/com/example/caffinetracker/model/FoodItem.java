@@ -2,34 +2,26 @@ package com.example.caffinetracker.model;
 
 public class FoodItem {
 
-    private String itemName;
-    private String itemCategory;
     private String itemNDB; // primary key on https://ndb.nal.usda.gov/ndb/
+    private String itemName;
     private String itemMeasure;
-    private float itemQuantity;
+    private String itemUnit;
+    private String itemValue;
 
     public FoodItem() {
-        itemName = "";
-        itemCategory = "";
         itemNDB = "";
+        itemName = "";
         itemMeasure = "";
-        itemQuantity = 0;
+        itemUnit = "";
+        itemValue = "";
     }
 
-    public FoodItem(String itemName, String itemCategory, String itemNDB, String itemMeasure) {
-        this.itemName = itemName;
-        this.itemCategory = itemCategory;
+    public FoodItem(String itemNDB, String itemName,String itemMeasure, String itemUnit, String itemValue) {
         this.itemNDB = itemNDB;
-        this.itemMeasure = itemMeasure;
-        this.itemQuantity = (float) 1;
-    }
-
-    public FoodItem(String itemName, String itemCategory, String itemNDB, String itemMeasure, float itemQuantity) {
         this.itemName = itemName;
-        this.itemCategory = itemCategory;
-        this.itemNDB = itemNDB;
         this.itemMeasure = itemMeasure;
-        this.itemQuantity = itemQuantity;
+        this.itemUnit = itemUnit;
+        this.itemValue = itemValue;
     }
 
     public String getItemName() {
@@ -38,14 +30,6 @@ public class FoodItem {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public String getItemCategory() {
-        return itemCategory;
-    }
-
-    public void setItemCategory(String itemCategory) {
-        this.itemCategory = itemCategory;
     }
 
     public String getItemNDB() {
@@ -64,22 +48,29 @@ public class FoodItem {
         this.itemMeasure = itemMeasure;
     }
 
-    public float getItemQuantity() {
-        return itemQuantity;
+    public String getItemUnit() {
+        return itemUnit;
     }
 
-    public void setItemQuantity(float itemQuantity) {
-        this.itemQuantity = itemQuantity;
+    public void setItemUnit(String itemUnit) {
+        this.itemUnit = itemUnit;
     }
 
+    public String getItemValue() {
+        return itemValue;
+    }
+
+    public void setItemValue(String itemValue) {
+        this.itemMeasure = itemValue;
+    }
+
+    //You can modify this if you want
     @Override
     public String toString() {
         return "FoodItem{" +
                 "itemName='" + itemName + '\'' +
-                ", itemCategory='" + itemCategory + '\'' +
                 ", itemNDB='" + itemNDB + '\'' +
                 ", itemMeasure='" + itemMeasure + '\'' +
-                ", itemQuantity=" + itemQuantity +
                 '}';
     }
 
