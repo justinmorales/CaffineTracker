@@ -7,13 +7,29 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.example.caffinetracker.model.FoodItem;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+
+import static com.example.caffinetracker.SettingsActivity.mSharedPrefs;
 
 public class MainActivity extends AppCompatActivity {
+
+    static public ArrayList<FoodItem> consumed;
+    static public int totalCaffeine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        consumed = new ArrayList<>();//yeet memes
+        totalCaffeine = 0;//for the memes
+        TextView textView = findViewById(R.id.totalCaffeineText);
+        textView.setText(Integer.toString(totalCaffeine) + " mg");
     }
 
     public void AddButton(View view)
@@ -25,11 +41,6 @@ public class MainActivity extends AppCompatActivity {
     {
 
     }
-    public void SettingsButton(View view)
-    {
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -48,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        TextView textView = findViewById(R.id.totalCaffeineText);
+        textView.setText(Integer.toString(totalCaffeine)+ " mg");
     }
 
 }

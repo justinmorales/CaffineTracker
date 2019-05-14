@@ -25,6 +25,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.caffinetracker.MainActivity.consumed;
+import static com.example.caffinetracker.MainActivity.totalCaffeine;
+
 public class APIMainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -157,5 +160,42 @@ public class APIMainActivity extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
 
 
+    }
+
+    public void addToList(View view) {
+        TextView nameText = findViewById(R.id.textFoodTItle);
+        String name = nameText.getText().toString();
+        FoodItem caffeine = new FoodItem();
+        for(int i = 0; i < foodItems.size(); i++) {
+            if (foodItems.get(i).getItemName() == name) {
+                caffeine = foodItems.get(i);
+                break;
+            }
+        }
+        if (consumed.size() == 0) {
+            consumed.add(caffeine);
+            int serving = Integer.parseInt(caffeine.getItemValue());
+            totalCaffeine += serving;
+        }
+        else{
+            for (int i = 0; i < consumed.size(); i++)
+            {
+                if (i == consumed.size() - 1 && caffeine != consumed.get(i))
+                {
+                    consumed.add(caffeine);
+                    int serving = Integer.parseInt(caffeine.getItemValue());
+                    totalCaffeine += serving;
+                }
+                else if(consumed.get(i) == caffeine)
+                {
+                    int serving =Integer.parseInt( caffeine.getItemValue());
+                    serving += serving;
+                    totalCaffeine += serving;
+                    consumed.get(i).setItemValue(Integer.toString(serving));
+                    break;
+                }
+            }
+        }
+        finish();
     }
 }
