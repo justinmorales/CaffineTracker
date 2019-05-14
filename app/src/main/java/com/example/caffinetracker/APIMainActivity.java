@@ -118,6 +118,7 @@ public class APIMainActivity extends AppCompatActivity {
                                 );
                                 foodItems.add(fi);
                             }
+                            changeView();
 
                             //This call show call a function to an adapter. Create that function in this class.
                             //showListOfItems();
@@ -140,14 +141,21 @@ public class APIMainActivity extends AppCompatActivity {
     }
 
     public void visualize(View view) {
-        //recyclerView = (RecyclerView) findViewById((R.id.rvContacts));
-        //layoutManager = new LinearLayoutManager(this);
-        //recyclerView.setLayoutManager(layoutManager);
-        MyAdapter myAdapter = new MyAdapter(foodItems);
         requestQueue.cancelAll(TAG_SEARCH_NAME);
         TextView textView = findViewById(R.id.SearchingText);
         StringRequest stringRequest = searchNameStringRequest(textView.getText().toString());
         stringRequest.setTag(TAG_SEARCH_NAME);
         requestQueue.add(stringRequest);
+
+    }
+    public void changeView(){
+        setContentView(R.layout.activity_scroll_down);
+        recyclerView = (RecyclerView) findViewById((R.id.rvContacts));
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        MyAdapter myAdapter = new MyAdapter(foodItems);
+        recyclerView.setAdapter(myAdapter);
+
+
     }
 }
