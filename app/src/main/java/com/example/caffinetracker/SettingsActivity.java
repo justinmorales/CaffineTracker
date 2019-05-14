@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private SharedPreferences mSharedPrefs;
+    static public SharedPreferences mSharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
