@@ -25,16 +25,16 @@ public class APIMainActivity extends AppCompatActivity {
 
     private static final int SINGLE_ITEM_REQUEST = 100;
 
-    public static final String RETURN_QUANTITY = "RETURN_QUANTITY";
+    //public static final String RETURN_QUANTITY = "RETURN_QUANTITY";
 
     // out arguments (return)
-    public static final String RETURN_FOOD_NAME = "RETURN_FOOD_NAME";
+    /*public static final String RETURN_FOOD_NAME = "RETURN_FOOD_NAME";
     public static final String RETURN_FOOD_CATEGORY = "RETURN_FOOD_CATEGORY";
     public static final String RETURN_FOOD_NDB = "RETURN_FOOD_NDB";
     public static final String RETURN_FOOD_MEASURE = "RETURN_FOOD_MEASURE";
-    public static final String RETURN_FOOD_QUANTITY = "RETURN_FOOD_QUANTITY";
+    public static final String RETURN_FOOD_QUANTITY = "RETURN_FOOD_QUANTITY";*/
 
-    private final String TAG_SEARCH_MEASURE = "USDAQuery-SearchMeasure";
+    //private final String TAG_SEARCH_MEASURE = "USDAQuery-SearchMeasure";
     private final String TAG_SEARCH_NAME = "USDAQuery-SearchName";
 
     private List<FoodItem> foodItems;
@@ -79,7 +79,7 @@ public class APIMainActivity extends AppCompatActivity {
         //nutrient search in json format
         final String URL_PREFIX = "https://api.nal.usda.gov/ndb/search/?format=json";
 
-        String url = URL_PREFIX + API + NUTRIENT + SORT + MAX_ROWS + BEGINNING_ROW + MEASUREBY + NDBNO;
+        String url = URL_PREFIX + API + NUTRIENT + SORT + MAX_ROWS + BEGINNING_ROW + MEASUREBY + NDBNO + nameSearch;
 
         // 1st param => type of method (GET/PUT/POST/PATCH/etc)
         // 2nd param => complete url of the API
@@ -96,15 +96,17 @@ public class APIMainActivity extends AppCompatActivity {
                         try {
                             JSONObject result = new JSONObject(response).getJSONObject("report");
                             int maxItems = result.getInt("end");
-                            JSONArray resultList = result.getJSONArray("foods");
+                            JSONArray resultFood = result.getJSONArray("foods");
 
                             for (int i = 0; i < maxItems; i++) {
+                                JSONObject resultNutrients = resultFood.getJSONObject(i);
+                                JSONArray nutrientsArray = resultNutrients.getJSONArray("nutrients");
                                 FoodItem fi = new FoodItem(
-                                        resultList.getJSONObject(i).getString("ndbno").trim(),
-                                        resultList.getJSONObject(i).getString("name").trim(),
-                                        resultList.getJSONObject(i).getString("measure").trim(),
-                                        resultList.getJSONObject(i).getString("unit").trim(),
-                                        resultList.getJSONObject(i).getString("value").trim()
+                                        resultFood.getJSONObject(i).getString("ndbno").trim(),
+                                        resultFood.getJSONObject(i).getString("name").trim(),
+                                        resultFood.getJSONObject(i).getString("measure").trim(),
+                                        nutrientsArray.getJSONObject(i).getString("unit").trim(),
+                                        nutrientsArray.getJSONObject(i).getString("value").trim()
                                 );
                                 foodItems.add(fi);
                             }
