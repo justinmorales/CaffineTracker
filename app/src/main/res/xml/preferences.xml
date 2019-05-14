@@ -1,0 +1,37 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="userName"
+        android:inputType="text"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="Name" />
+    <EditTextPreference
+        android:key="userAge"
+        android:inputType="number"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="Age" />
+    <EditTextPreference
+        android:key="userHeight"
+        android:inputType="number"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="Height (in)" />
+    <EditTextPreference
+        android:key="userWeight"
+        android:inputType="number"
+        android:maxLines="1"
+        android:selectAllOnFocus="true"
+        android:title="Weight (lb)" />
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/pref_sex"
+        android:entryValues="@array/pref_sex_values"
+        android:key="userSex"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null"
+        android:title="Sex" />
+
+</PreferenceScreen>
