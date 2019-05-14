@@ -26,8 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        consumed = new ArrayList<>();//yeet memes
-        totalCaffeine = 0;//for the memes
+        consumed = new ArrayList<>();
+        totalCaffeine = 0;
         TextView textView = findViewById(R.id.totalCaffeineText);
         textView.setText(Integer.toString(totalCaffeine) + " mg");
     }

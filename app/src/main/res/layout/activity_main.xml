@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wood"
     tools:context=".MainActivity">
 
     <Button
@@ -46,7 +47,9 @@
         android:layout_marginEnd="137dp"
         android:layout_marginRight="137dp"
         android:layout_marginBottom="8dp"
+        android:gravity="center"
         android:text="Total mg of Caffeine"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/totalCaffeineText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -92,10 +95,27 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="46dp"
         android:layout_marginRight="46dp"
+        android:gravity="center"
         android:text="@android:string/paste_as_plain_text"
+        android:textSize="36sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/consumptionList" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="191dp"
+        android:layout_height="234dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_coffee_cup_chocolate_svgrepo_com" />
 
 </android.support.constraint.ConstraintLayout>
