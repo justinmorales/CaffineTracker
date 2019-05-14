@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void AddButton(View view)
     {
+        Intent switcher = new Intent(this,APIMainActivity.class);
+        startActivity(switcher);
     }
     public void StatsButton(View view)
     {

@@ -1,4 +1,4 @@
-package com.example.caffinetracker.model;
+package com.example.caffinetracker;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.caffinetracker.R;
+import com.example.caffinetracker.model.FoodItem;
 
 import java.util.List;
 
