@@ -73,5 +73,10 @@ public class FoodItem {
                 ", itemMeasure='" + itemMeasure + '\'' +
                 '}';
     }
+    public String details(){
+        return "Measure = " + this.getItemMeasure() + "\n" +
+                "Unit = " + this.getItemUnit() + "\n" +
+                "Value = " + this.getItemValue() + "\n";
+    }
 
 }
