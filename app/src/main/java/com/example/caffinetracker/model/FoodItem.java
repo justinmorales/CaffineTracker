@@ -74,9 +74,9 @@ public class FoodItem {
                 '}';
     }
     public String details(){
-        return "Measure = " + this.getItemMeasure() + "\n" +
-                "Unit = " + this.getItemUnit() + "\n" +
-                "Value = " + this.getItemValue() + "\n";
+        return  this.getItemMeasure() + "\n" +
+                "Unit = " + this.getItemValue() + " "+
+                 this.getItemUnit() + " Caffeine \n";
     }
 
 }
