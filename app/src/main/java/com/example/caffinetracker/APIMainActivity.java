@@ -1,5 +1,7 @@
 package com.example.caffinetracker;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +31,11 @@ import static com.example.caffinetracker.MainActivity.consumed;
 import static com.example.caffinetracker.MainActivity.totalCaffeine;
 
 public class APIMainActivity extends AppCompatActivity {
+
+    static FoodDB db;
+    static ConnectivityManager connectivityManager;
+    static NetworkInfo networkInfo;
+
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private MyAdapter m;
