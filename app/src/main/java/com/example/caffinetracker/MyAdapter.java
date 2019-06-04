@@ -40,9 +40,9 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.nameText.setText(foodItems.get(position).getItemName());
         holder.itemDescription.setText(foodItems.get(position).details());
     }
-
     @Override
     public int getItemCount() {
         return foodItems.size();
     }
+
 }

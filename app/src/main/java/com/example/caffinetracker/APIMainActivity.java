@@ -161,7 +161,6 @@ public class APIMainActivity extends AppCompatActivity {
 
 
     }
-
     public void addToList(View view) {
         TextView nameText = findViewById(R.id.textFoodTItle);
         String name = nameText.getText().toString();
@@ -198,4 +197,5 @@ public class APIMainActivity extends AppCompatActivity {
         }
         finish();
     }
+
 }

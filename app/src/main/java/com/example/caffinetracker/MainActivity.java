@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.caffinetracker.model.FoodItem;
+import com.example.caffinetracker.model.SQLitePictureLibrary;
 
 import org.w3c.dom.Text;
 
@@ -21,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
     static public ArrayList<FoodItem> consumed;
     static public int totalCaffeine;
-
+    static  public SQLitePictureLibrary db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new SQLitePictureLibrary(this,SQLitePictureLibrary.DB_NAME,null,1);
         consumed = new ArrayList<>();
         totalCaffeine = 0;
         TextView textView = findViewById(R.id.totalCaffeineText);
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         TextView textView = findViewById(R.id.totalCaffeineText);
         textView.setText(Integer.toString(totalCaffeine)+ " mg");
+        db.insert(totalCaffeine);
+        db.view();
     }
 
 }
