@@ -55,7 +55,6 @@ public class APICalls extends AppCompatActivity {
 
     private List<FoodItem> foodItems;
     private RequestQueue requestQueue;
-    private int chosenItem;
 
     public APICalls() {
         super();

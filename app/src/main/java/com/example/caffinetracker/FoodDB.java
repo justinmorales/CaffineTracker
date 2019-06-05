@@ -23,7 +23,7 @@ public class FoodDB extends SQLiteOpenHelper {
     static String DB_NAME = "FOOD_DB";
     static String TABLE_NAME = "FOOD_TABLE";
     static int VERSION = 1;
-    APICalls please = new APICalls();
+    //APICalls please = new APICalls();
 
 
 
@@ -165,7 +165,7 @@ public class FoodDB extends SQLiteOpenHelper {
         this.db = getWritableDatabase();
         Cursor c = db.rawQuery("Select * FROM " + TABLE_NAME + ";", null);
         if(c.getCount() == 0){
-            please.callAPI();
+            MainActivity.testMethod();
         }
     }
 
