@@ -151,7 +151,7 @@ public class APIMainActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
-    public void changeView(){
+    public void changeView() {
         setContentView(R.layout.activity_scroll_down);
         recyclerView = (RecyclerView) findViewById((R.id.rvContacts));
         layoutManager = new LinearLayoutManager(this);
@@ -159,8 +159,9 @@ public class APIMainActivity extends AppCompatActivity {
         MyAdapter myAdapter = new MyAdapter(foodItems);
         recyclerView.setAdapter(myAdapter);
 
-
     }
+
+
     public void addToList(View view) {
         TextView nameText = findViewById(R.id.textFoodTItle);
         String name = nameText.getText().toString();

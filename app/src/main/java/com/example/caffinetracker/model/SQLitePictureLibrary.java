@@ -3,6 +3,7 @@ package com.example.caffinetracker.model;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -40,15 +41,25 @@ public class SQLitePictureLibrary extends SQLiteOpenHelper {
         }
 
     }
+    //update table_name  SET CAFFEIne where string EQUALS DATE_SELECTED
 
     public void insert(Integer amount) throws SQLException {
         this.db = getWritableDatabase();
         ContentValues cv = new ContentValues();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(new Date());
-        cv.put("CAFFEINE",amount);
-        cv.put("DATE_RECORDED",date);
-        this.db.insert(TABLE_NAME,null,cv);
+        long count = -1;
+        try {
+            count = DatabaseUtils.queryNumEntries(db, TABLE_NAME, "DATE_RECORDED = ?", new String[]{date});
+        }
+        finally {
+            cv.put("CAFFEINE", amount);
+            cv.put("DATE_RECORDED", date);
+            if (count > 0)
+                db.update(TABLE_NAME, cv, "DATE_RECORDED = ?", new String[]{date});
+            else
+                this.db.insert(TABLE_NAME, null, cv);
+        }
     }
     public void view(){
         this.db = getReadableDatabase();
@@ -72,6 +83,13 @@ public class SQLitePictureLibrary extends SQLiteOpenHelper {
 
      //   return biter;
     //}
+    public int fetchInt(String myString)
+    {
+        //SELECT CAFFEINE FROM IMAGE_TABLE WHERE DATE_RECORDED EQUALS mystring
+        db = getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT CAFFEINE FROM " + TABLE_NAME + " WHERE DATE_RECORDED EQUALS " + myString +";",null);
+        return c.getInt(0);
+    }
 
     public String fetchString(int i) {
         Cursor cursor = db.rawQuery("SELECT DATE_RECORDED FROM "+TABLE_NAME+";",null);
