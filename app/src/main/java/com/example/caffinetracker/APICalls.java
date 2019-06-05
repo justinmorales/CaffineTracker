@@ -27,11 +27,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.caffinetracker.MainActivity.consumed;
 import static com.example.caffinetracker.MainActivity.fdb;
-import static com.example.caffinetracker.MainActivity.totalCaffeine;
 
-public class APIMainActivity extends AppCompatActivity {
+public class APICalls extends AppCompatActivity {
 
     static ConnectivityManager connectivityManager;
     static NetworkInfo networkInfo;
@@ -59,13 +57,20 @@ public class APIMainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private int chosenItem;
 
+    public APICalls() {
+        super();
+        //foodItems = new ArrayList<>();
+        requestQueue = Volley.newRequestQueue(this);
+    }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apimain);
 
         foodItems = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(this);
+        fdb.firstEntry();
 
         //JsonObjectRequest objectRequest = new JsonObjectRequest()
 
@@ -97,7 +102,7 @@ public class APIMainActivity extends AppCompatActivity {
         //nutrient search in json format
         final String URL_PREFIX = "https://api.nal.usda.gov/ndb/nutrients/?format=json";
 
-        String url = URL_PREFIX + API + NUTRIENT + SORT + MAX_ROWS + BEGINNING_ROW + MEASUREBY + NDBNO + nameSearch ;
+        String url = URL_PREFIX + API + NUTRIENT + SORT + MAX_ROWS + BEGINNING_ROW + MEASUREBY + NDBNO + nameSearch;
 
         // 1st param => type of method (GET/PUT/POST/PATCH/etc)
         // 2nd param => complete url of the API
@@ -119,15 +124,6 @@ public class APIMainActivity extends AppCompatActivity {
                             for (int i = 0; i < maxItems; i++) {
                                 JSONObject resultNutrients = resultFood.getJSONObject(i);
                                 JSONArray nutrientsArray = resultNutrients.getJSONArray("nutrients");
-                                FoodItem fi = new FoodItem(
-                                        resultFood.getJSONObject(i).getString("ndbno").trim(),
-                                        resultFood.getJSONObject(i).getString("name").trim(),
-                                        resultFood.getJSONObject(i).getString("measure").trim(),
-                                        nutrientsArray.getJSONObject(0).getString("unit").trim(),
-                                        nutrientsArray.getJSONObject(0).getString("value").trim()
-                                );
-
-                                foodItems.add(fi);
 
                                 fdb.addEntry(
                                         resultFood.getJSONObject(i).getString("ndbno").trim(),
@@ -137,14 +133,13 @@ public class APIMainActivity extends AppCompatActivity {
                                         nutrientsArray.getJSONObject(0).getString("value").trim()
                                 );
                             }
-                            changeView();
 
                             //This call show call a function to an adapter. Create that function in this class.
                             //showListOfItems();
 
                             // catch for the JSON parsing error
                         } catch (JSONException e) {
-                            Toast.makeText(APIMainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(APICalls.this, e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     } // public void onResponse(String response)
                 }, // Response.Listener<String>()
@@ -154,67 +149,18 @@ public class APIMainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // display a simple message on the screen
-                        Toast.makeText(APIMainActivity.this, "Food source is not responding (USDA API)", Toast.LENGTH_LONG).show();
+                        Toast.makeText(APICalls.this, "Food source is not responding (USDA API)", Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
-    public void visualize(View view) {
-        //requestQueue.cancelAll(TAG_SEARCH_NAME);
-        TextView textView = findViewById(R.id.SearchingText);
-        String searchName = textView.getText().toString();
+
+    public void callAPI() {
+        requestQueue.cancelAll(TAG_SEARCH_NAME);
+        //TextView textView = findViewById(R.id.SearchingText);
         //StringRequest stringRequest = searchNameStringRequest(textView.getText().toString());
-        fdb.fillList(foodItems, searchName);
-        //stringRequest.setTag(TAG_SEARCH_NAME);
-        //requestQueue.add(stringRequest);
-        changeView();
-    }
-
-    public void changeView(){
-        setContentView(R.layout.activity_scroll_down);
-        recyclerView = (RecyclerView) findViewById((R.id.rvContacts));
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        MyAdapter myAdapter = new MyAdapter(foodItems);
-        recyclerView.setAdapter(myAdapter);
-
-
-    }
-
-    public void addToList(View view) {
-        TextView nameText = findViewById(R.id.textFoodTItle);
-        String name = nameText.getText().toString();
-        FoodItem caffeine = new FoodItem();
-        for(int i = 0; i < foodItems.size(); i++) {
-            if (foodItems.get(i).getItemName() == name) {
-                caffeine = foodItems.get(i);
-                break;
-            }
-        }
-        if (consumed.size() == 0) {
-            consumed.add(caffeine);
-            int serving = Integer.parseInt(caffeine.getItemValue());
-            totalCaffeine += serving;
-        }
-        else{
-            for (int i = 0; i < consumed.size(); i++)
-            {
-                if (i == consumed.size() - 1 && caffeine != consumed.get(i))
-                {
-                    consumed.add(caffeine);
-                    int serving = Integer.parseInt(caffeine.getItemValue());
-                    totalCaffeine += serving;
-                }
-                else if(consumed.get(i) == caffeine)
-                {
-                    int serving =Integer.parseInt( caffeine.getItemValue());
-                    serving += serving;
-                    totalCaffeine += serving;
-                    consumed.get(i).setItemValue(Integer.toString(serving));
-                    break;
-                }
-            }
-        }
-        finish();
+        StringRequest stringRequest = searchNameStringRequest("");
+        stringRequest.setTag(TAG_SEARCH_NAME);
+        requestQueue.add(stringRequest);
     }
 }

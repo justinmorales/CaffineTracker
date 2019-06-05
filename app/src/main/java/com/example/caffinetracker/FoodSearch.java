@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static com.example.caffinetracker.APIMainActivity.db;
+import static com.example.caffinetracker.MainActivity.fdb;
 
 
 class FoodSearch extends AsyncTask<String, Void, Bitmap>{
