@@ -1,5 +1,6 @@
 package com.example.caffinetracker;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,10 +30,11 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             button = itemView.findViewById(R.id.ServingButton);
         }
     }
+    private Context context;
     public MyAdapter(List<FoodItem> p0){foodItems = p0;}
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View contactView = inflater.inflate(R.layout.caffeine_dropdown_layout,parent,false);
         MyViewHolder viewHolder = new MyViewHolder(contactView);
@@ -80,6 +82,7 @@ class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                         }
                     }
                 }
+                ((Activity)context).finish();
             }
         });
     }

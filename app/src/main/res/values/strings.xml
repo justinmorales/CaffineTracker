@@ -7,6 +7,7 @@
     <string name="food_item">Food Item</string>
     <string name="title_activity_single_item">SingleItem</string>
     <string name="action_settings">Settings</string>
+    <string name="homeMg">0mg</string>
     <string-array name="pref_sex">
         <item>Male</item>
         <item>Female</item>
