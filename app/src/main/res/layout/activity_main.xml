@@ -14,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:layout_marginBottom="22dp"
@@ -23,8 +22,7 @@
         app:donut_unfinished_color="@color/innerCircleGreen"
         app:layout_constraintBottom_toTopOf="@+id/consumptionList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:id="@+id/donut_progress_yellow"
@@ -32,7 +30,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:layout_marginBottom="22dp"
@@ -41,8 +38,7 @@
         app:donut_unfinished_color="@color/innerCircleYellow"
         app:layout_constraintBottom_toTopOf="@+id/consumptionList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:id="@+id/donut_progress_orange"
@@ -50,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:layout_marginBottom="22dp"
@@ -59,8 +54,7 @@
         app:donut_unfinished_color="@color/innerCircleOrange"
         app:layout_constraintBottom_toTopOf="@+id/consumptionList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.github.lzyzsd.circleprogress.DonutProgress
         android:id="@+id/donut_progress_red"
@@ -68,7 +62,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="155dp"
         android:layout_marginLeft="155dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="156dp"
         android:layout_marginRight="156dp"
         android:layout_marginBottom="22dp"
@@ -78,8 +71,7 @@
         app:layout_constraintBottom_toTopOf="@+id/consumptionList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addButton"
@@ -130,21 +122,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="377dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginRight="18dp"
-        android:text="@string/username"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/totalCaffeineText"
