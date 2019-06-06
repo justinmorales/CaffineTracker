@@ -14,8 +14,19 @@
     <color name="toolbarColor">#31575e</color>
     <color name="babyPink">#ff8da6</color>
     <color name="splashbg">#f9f9f9</color>
+
     <color name="actionbar">#D39753</color>
     <color name="actionbarDark">#956C3E</color>
     <color name="buttonColor">#5C3B15</color>
     <color name="borderColor">#878787</color>
+
+    <color name="innerCircleGreen">#b9e7ae</color>
+    <color name="outerCircleGreen">#45a52d</color>
+    <color name="innerCircleYellow">#e9eb99</color>
+    <color name="outerCircleYellow">#e5ec27</color>
+    <color name="innerCircleOrange">#ebb883</color>
+    <color name="outerCircleOrange">#f0891b</color>
+    <color name="innerCircleRed">#f99aaa</color>
+    <color name="outerCircleRed">#f9001d</color>
+
 </resources>

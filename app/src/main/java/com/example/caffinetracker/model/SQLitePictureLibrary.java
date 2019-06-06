@@ -135,4 +135,29 @@ public class SQLitePictureLibrary extends SQLiteOpenHelper {
         db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE DATE_RECORDED = \"" + string + "\";" );
     }
+
+    public void insertFakeValues(Integer amount, String inputDate) throws SQLException {
+        this.db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        String date = inputDate;
+        long count = -1;
+        try {
+            count = DatabaseUtils.queryNumEntries(db, TABLE_NAME, "DATE_RECORDED = ?", new String[]{date});
+        }
+        finally {
+            cv.put("DATE_RECORDED", date);
+            if (count > 0) {
+                if (amount == 0) {
+                    amount = fetchInt(date);
+                    MainActivity.totalCaffeine = amount;
+                }
+                cv.put("CAFFEINE", amount);
+                db.update(TABLE_NAME, cv, "DATE_RECORDED = ?", new String[]{date});
+            }
+            else {
+                cv.put("CAFFEINE", amount);
+                this.db.insert(TABLE_NAME, null, cv);
+            }
+        }
+    }
 }
