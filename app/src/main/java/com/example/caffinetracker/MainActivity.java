@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
         db = new SQLitePictureLibrary(this,SQLitePictureLibrary.DB_NAME,null,1);
         consumed = new ArrayList<>();
         totalCaffeine = 0;
-        TextView textView = findViewById(R.id.totalCaffeineText);
-        textView.setText(Integer.toString(totalCaffeine) + " mg");
     }
 
     public void AddButton(View view)
@@ -66,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume()
     {
         super.onResume();
-        TextView textView = findViewById(R.id.totalCaffeineText);
-        textView.setText(Integer.toString(totalCaffeine)+ " mg");
         long j = db.count();
         db.insert(totalCaffeine);
+        TextView textView = findViewById(R.id.totalCaffeineText);
+        textView.setText(Integer.toString(totalCaffeine)+ " mg");
         db.view();
     }
 

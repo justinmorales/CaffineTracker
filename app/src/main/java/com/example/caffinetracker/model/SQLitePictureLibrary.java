@@ -7,7 +7,10 @@ import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.BaseColumns;
 import android.widget.Toast;
+
+import com.example.caffinetracker.MainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,12 +56,19 @@ public class SQLitePictureLibrary extends SQLiteOpenHelper {
             count = DatabaseUtils.queryNumEntries(db, TABLE_NAME, "DATE_RECORDED = ?", new String[]{date});
         }
         finally {
-            cv.put("CAFFEINE", amount);
             cv.put("DATE_RECORDED", date);
-            if (count > 0)
+            if (count > 0) {
+                if (amount == 0) {
+                    amount = fetchInt(date);
+                    MainActivity.totalCaffeine = amount;
+                }
+                cv.put("CAFFEINE", amount);
                 db.update(TABLE_NAME, cv, "DATE_RECORDED = ?", new String[]{date});
-            else
+            }
+            else {
+                cv.put("CAFFEINE", amount);
                 this.db.insert(TABLE_NAME, null, cv);
+            }
         }
     }
     public void view(){
@@ -87,8 +97,25 @@ public class SQLitePictureLibrary extends SQLiteOpenHelper {
     {
         //SELECT CAFFEINE FROM IMAGE_TABLE WHERE DATE_RECORDED EQUALS mystring
         db = getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT CAFFEINE FROM " + TABLE_NAME + " WHERE DATE_RECORDED EQUALS " + myString +";",null);
-        return c.getInt(0);
+        int index;
+        int value;
+        String[] projection = {
+                BaseColumns._ID,
+                "CAFFEINE"
+        };
+
+        Cursor cursor = db.query(
+                TABLE_NAME,
+                projection,
+                "DATE_RECORDED =" + " ?",
+                new String[]{myString},
+                null, null, null, null);
+        cursor.moveToFirst();
+        index = cursor.getColumnIndex("CAFFEINE");
+        value = Integer.parseInt(cursor.getString(index));
+        return value;
+
+
     }
 
     public String fetchString(int i) {

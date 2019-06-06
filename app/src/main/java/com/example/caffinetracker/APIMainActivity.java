@@ -60,22 +60,24 @@ public class APIMainActivity extends AppCompatActivity {
 
         foodItems = new ArrayList<>();
         TotalfoodItems = new ArrayList<>();
+        if (fdb.count() < 875) {
 
-        try {
-            InputStream inputStream = getResources().openRawResource(R.raw.caffeineinformer);
-            csvReader = new CSVReader(new InputStreamReader(inputStream));
-            String[] nextLine;
+            try {
+                InputStream inputStream = getResources().openRawResource(R.raw.caffeineinformer);
+                csvReader = new CSVReader(new InputStreamReader(inputStream));
+                String[] nextLine;
 
-            csvReader.readNext(); //gets rid of the first line
+                csvReader.readNext(); //gets rid of the first line
 
-            while ((nextLine = csvReader.readNext()) != null) {
-                fdb.addEntry(nextLine[0], nextLine[1], nextLine[2]);
+                while ((nextLine = csvReader.readNext()) != null) {
+                    fdb.addEntry(nextLine[0], nextLine[1], nextLine[2]);
+                }
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
     }

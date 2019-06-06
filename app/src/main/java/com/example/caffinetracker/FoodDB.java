@@ -41,6 +41,11 @@ public class FoodDB extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + FTABLE_NAME + " (_id INTEGER PRIMARY KEY, NDB STRING, NAME STRING, MEASURE STRING, UNIT STRING, VALUE STRING);");
 
     }
+    public int count() {
+        db = getReadableDatabase();
+        Cursor c = db.rawQuery("Select * FROM " + FTABLE_NAME + ";", null);
+        return c.getCount();
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -54,12 +59,16 @@ public class FoodDB extends SQLiteOpenHelper {
 
     public void addEntry(String name, String measure, String value) throws SQLiteException {
         db = getWritableDatabase();
-        ContentValues cv = new  ContentValues();
-        cv.put("NAME",    name);
-        cv.put("MEASURE",    measure);
-        cv.put("VALUE",   value);
-        db.insert(FTABLE_NAME, null, cv );
+        long count = count();
+        if (count < 876) {
+            ContentValues cv = new ContentValues();
+            cv.put("NAME", name);
+            cv.put("MEASURE", measure);
+            cv.put("VALUE", value);
+            db.insert(FTABLE_NAME, null, cv);
+        }
     }
+
 
     public Cursor foodQuery( String filter) {
         SQLiteDatabase db = getReadableDatabase();
