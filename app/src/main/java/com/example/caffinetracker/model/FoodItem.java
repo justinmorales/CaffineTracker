@@ -2,25 +2,25 @@ package com.example.caffinetracker.model;
 
 public class FoodItem {
 
-    private String itemNDB; // primary key on https://ndb.nal.usda.gov/ndb/
+    //private String itemNDB; // primary key on https://ndb.nal.usda.gov/ndb/
     private String itemName;
     private String itemMeasure;
-    private String itemUnit;
+    //private String itemUnit;
     private String itemValue;
 
     public FoodItem() {
-        itemNDB = "";
+        //itemNDB = "";
         itemName = "";
         itemMeasure = "";
-        itemUnit = "";
+        //itemUnit = "";
         itemValue = "";
     }
 
-    public FoodItem(String itemNDB, String itemName,String itemMeasure, String itemUnit, String itemValue) {
-        this.itemNDB = itemNDB;
+    public FoodItem(String itemName,String itemMeasure, String itemValue) {
+        //this.itemNDB = itemNDB;
         this.itemName = itemName;
         this.itemMeasure = itemMeasure;
-        this.itemUnit = itemUnit;
+        //this.itemUnit = itemUnit;
         this.itemValue = itemValue;
     }
 
@@ -32,13 +32,13 @@ public class FoodItem {
         this.itemName = itemName;
     }
 
-    public String getItemNDB() {
-        return itemNDB;
-    }
+    //public String getItemNDB() {
+        //return itemNDB;
+    //}
 
-    public void setItemNDB(String itemNDB) {
-        this.itemNDB = itemNDB;
-    }
+   // public void setItemNDB(String itemNDB) {
+        //this.itemNDB = itemNDB;
+    //}
 
     public String getItemMeasure() {
         return itemMeasure;
@@ -48,13 +48,13 @@ public class FoodItem {
         this.itemMeasure = itemMeasure;
     }
 
-    public String getItemUnit() {
-        return itemUnit;
-    }
-
-    public void setItemUnit(String itemUnit) {
-        this.itemUnit = itemUnit;
-    }
+//    public String getItemUnit() {
+//        return itemUnit;
+//    }
+//
+//    public void setItemUnit(String itemUnit) {
+//        this.itemUnit = itemUnit;
+//    }
 
     public String getItemValue() {
         return itemValue;
@@ -69,14 +69,13 @@ public class FoodItem {
     public String toString() {
         return "FoodItem{" +
                 "itemName='" + itemName + '\'' +
-                ", itemNDB='" + itemNDB + '\'' +
                 ", itemMeasure='" + itemMeasure + '\'' +
                 '}';
     }
     public String details(){
-        return  this.getItemMeasure() + "\n" +
-                "Unit = " + this.getItemValue() + " "+
-                 this.getItemUnit() + " Caffeine \n";
+        return  "fl oz: " + this.getItemMeasure() + "\n" +
+                this.getItemValue() + " "+
+                  "mg\n";
     }
 
 }
