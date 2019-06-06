@@ -7,6 +7,79 @@
     android:background="@drawable/wood"
     tools:context=".MainActivity">
 
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donut_progress_green"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginBottom="22dp"
+        app:donut_finished_color="@color/outerCircleGreen"
+        app:donut_show_text="false"
+        app:donut_unfinished_color="@color/innerCircleGreen"
+        app:layout_constraintBottom_toTopOf="@+id/consumptionList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donut_progress_yellow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginBottom="22dp"
+        app:donut_finished_color="@color/outerCircleYellow"
+        app:donut_show_text="false"
+        app:donut_unfinished_color="@color/innerCircleYellow"
+        app:layout_constraintBottom_toTopOf="@+id/consumptionList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donut_progress_orange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginBottom="22dp"
+        app:donut_finished_color="@color/outerCircleOrange"
+        app:donut_show_text="false"
+        app:donut_unfinished_color="@color/innerCircleOrange"
+        app:layout_constraintBottom_toTopOf="@+id/consumptionList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donut_progress_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="155dp"
+        android:layout_marginLeft="155dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
+        android:layout_marginBottom="22dp"
+        app:donut_finished_color="@color/outerCircleRed"
+        app:donut_show_text="false"
+        app:donut_unfinished_color="@color/innerCircleRed"
+        app:layout_constraintBottom_toTopOf="@+id/consumptionList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name" />
+
     <Button
         android:id="@+id/addButton"
         android:layout_width="wrap_content"
@@ -46,12 +119,13 @@
         android:layout_marginLeft="136dp"
         android:layout_marginEnd="137dp"
         android:layout_marginRight="137dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="496dp"
         android:gravity="center"
         android:text="Total mg of Caffeine"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/totalCaffeineText"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -63,28 +137,10 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
-        android:layout_marginBottom="77dp"
         android:text="@string/username"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ProgressBar
-        android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="196dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="107dp"
-        android:layout_marginLeft="107dp"
-        android:layout_marginEnd="108dp"
-        android:layout_marginRight="108dp"
-        android:layout_marginBottom="9dp"
-        android:max="100"
-        android:progress="20"
-        app:layout_constraintBottom_toTopOf="@+id/consumptionList"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/totalCaffeineText"
@@ -92,17 +148,20 @@
         android:layout_height="116dp"
         android:layout_marginStart="41dp"
         android:layout_marginLeft="41dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="46dp"
         android:layout_marginRight="46dp"
+        android:layout_marginBottom="8dp"
         android:gravity="center"
         android:text="@android:string/paste_as_plain_text"
         android:textSize="36sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/consumptionList" />
+        app:layout_constraintTop_toBottomOf="@+id/consumptionList"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView3"
