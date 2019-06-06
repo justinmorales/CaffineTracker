@@ -45,30 +45,18 @@ public class APIMainActivity extends AppCompatActivity {
 
     private RecyclerView.LayoutManager layoutManager;
 
-    //private static final int SINGLE_ITEM_REQUEST = 100;
-
-    //public static final String RETURN_QUANTITY = "RETURN_QUANTITY";
-
-    // out arguments (return)
-    //public static final String RETURN_FOOD_NAME = "RETURN_FOOD_NAME";
-    //public static final String RETURN_FOOD_CATEGORY = "RETURN_FOOD_CATEGORY";
-    //public static final String RETURN_FOOD_NDB = "RETURN_FOOD_NDB";
-    //public static final String RETURN_FOOD_MEASURE = "RETURN_FOOD_MEASURE";
-    //public static final String RETURN_FOOD_QUANTITY = "RETURN_FOOD_QUANTITY";
-
-    private final String TAG_SEARCH_MEASURE = "USDAQuery-SearchMeasure";
-    private final String TAG_SEARCH_NAME = "USDAQuery-SearchName";
-
     private List<FoodItem> foodItems,TotalfoodItems;
     private CSVReader csvReader;
-    private RequestQueue requestQueue;
     private int chosenItem;
     private List myEntries;
+    static public FoodDB fdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apimain);
+
+        fdb = new FoodDB(this,FoodDB.FDB_NAME,null,1);
 
         foodItems = new ArrayList<>();
         TotalfoodItems = new ArrayList<>();
@@ -77,37 +65,27 @@ public class APIMainActivity extends AppCompatActivity {
             InputStream inputStream = getResources().openRawResource(R.raw.caffeineinformer);
             csvReader = new CSVReader(new InputStreamReader(inputStream));
             String[] nextLine;
-            
+
             csvReader.readNext(); //gets rid of the first line
 
             while ((nextLine = csvReader.readNext()) != null) {
-                FoodItem fi = new FoodItem(nextLine[0], nextLine[1], nextLine[2]);
-                foodItems.add(fi);
+                fdb.addEntry(nextLine[0], nextLine[1], nextLine[2]);
             }
-//            myEntries = csvReader.readAll();
-//            int size = myEntries.size();
-//            for (int i = 1; i < size; i++)
-//            {
-//                FoodItem food = new FoodItem();
-//                food.setItemName(myEntries[i].get(0));
-//            }
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        requestQueue = Volley.newRequestQueue(this);
-
-        //JsonObjectRequest objectRequest = new JsonObjectRequest()
 
     }
 
 
 
     public void visualize(View view) {
-        requestQueue.cancelAll(TAG_SEARCH_NAME);
         TextView textView = findViewById(R.id.SearchingText);
-
+        String searchName = textView.getText().toString();
+        fdb.fillList(foodItems, searchName);
         changeView();
 
 
