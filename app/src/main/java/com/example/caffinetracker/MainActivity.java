@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         db.insert(totalCaffeine);
         TextView textView = findViewById(R.id.totalCaffeineText);
         textView.setText(Integer.toString(totalCaffeine) + " mg");
-        db.view();
 
         SetUpDonut();
     }
