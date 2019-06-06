@@ -14,4 +14,8 @@
     <color name="toolbarColor">#31575e</color>
     <color name="babyPink">#ff8da6</color>
     <color name="splashbg">#f9f9f9</color>
+    <color name="actionbar">#D39753</color>
+    <color name="actionbarDark">#956C3E</color>
+    <color name="buttonColor">#5C3B15</color>
+    <color name="borderColor">#878787</color>
 </resources>

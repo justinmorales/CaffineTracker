@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wood">
+    android:orientation="vertical"
+    android:background="@drawable/backgrounda">
 
     <EditText
         android:id="@+id/SearchingText"
@@ -18,6 +19,8 @@
         android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="@string/food_item"
+        android:background="@drawable/textborder"
+        android:padding="10dp"
         android:inputType="textPersonName"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -30,34 +33,39 @@
 
     <Button
         android:id="@+id/VisualizeButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="171dp"
+        android:background="@drawable/custombutton"
         android:onClick="visualize"
-        android:text="Visualize"
+        android:text="Search.."
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SearchingText" />
+        app:layout_constraintTop_toBottomOf="@+id/SearchingText"
+        app:layout_constraintVertical_bias="0.553" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="197dp"
-        android:layout_height="224dp"
-        android:layout_marginStart="107dp"
-        android:layout_marginLeft="107dp"
-        android:layout_marginEnd="107dp"
-        android:layout_marginRight="107dp"
-        android:layout_marginBottom="101dp"
+        android:layout_width="154dp"
+        android:layout_height="202dp"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_coffee_cup_chocolate_svgrepo_com" />
 </android.support.constraint.ConstraintLayout>
