@@ -11,6 +11,11 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.opencsv.CSVReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.FileReader;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
@@ -22,6 +27,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +42,7 @@ public class APIMainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private MyAdapter m;
+
     private RecyclerView.LayoutManager layoutManager;
 
     //private static final int SINGLE_ITEM_REQUEST = 100;
@@ -49,8 +60,10 @@ public class APIMainActivity extends AppCompatActivity {
     private final String TAG_SEARCH_NAME = "USDAQuery-SearchName";
 
     private List<FoodItem> foodItems;
+    private CSVReader csvReader;
     private RequestQueue requestQueue;
     private int chosenItem;
+    private List myEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +71,15 @@ public class APIMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_apimain);
 
         foodItems = new ArrayList<>();
+        try {
+            InputStream inputStream = getResources().openRawResource(R.raw.caffeineinformer);
+            csvReader = new CSVReader(new InputStreamReader(inputStream));
+            myEntries = csvReader.readAll();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         requestQueue = Volley.newRequestQueue(this);
 
         //JsonObjectRequest objectRequest = new JsonObjectRequest()

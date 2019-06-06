@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         TextView textView = findViewById(R.id.totalCaffeineText);
         textView.setText(Integer.toString(totalCaffeine)+ " mg");
+        long j = db.count();
         db.insert(totalCaffeine);
         db.view();
     }
